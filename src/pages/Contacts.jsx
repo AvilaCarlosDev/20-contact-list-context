@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { ACTIONS } from "../store.js";
@@ -11,7 +11,7 @@ export const Contacts = () => {
       const [showDeleteModal, setShowDeleteModal] = useState(false);
       const [contactToDelete, setContactToDelete] = useState(null);
 
-      const loadContacts = async () => {
+      const loadContacts = useCallback(async () => {
               try {
                         let resp = await fetch(
                                     `https://playground.4geeks.com/contact/agendas/${AGENDA_SLUG}/contacts`
@@ -33,11 +33,11 @@ export const Contacts = () => {
               } catch (error) {
                         dispatch({ type: ACTIONS.SET_ERROR, payload: error.message });
               }
-      };
+      }, [dispatch]);
 
       useEffect(() => {
               loadContacts();
-      }, []);
+      }, [loadContacts]);
 
       const handleDeleteClick = (contact) => {
               setContactToDelete(contact);
@@ -63,14 +63,14 @@ export const Contacts = () => {
               <div className="container mt-4">
                     <div className="d-flex justify-content-between align-items-center mb-4">
                             <h1 className="text-white">
-                                      <i className="fas fa-address-book me-2"></i>i>
+                                      <i className="fas fa-address-book me-2"></i>
                                       Mis Contactos
-                            </h1>h1>
+                            </h1>
                             <Link to="/add" className="btn btn-success btn-lg">
-                                      <i className="fas fa-plus me-2"></i>i>
+                                      <i className="fas fa-plus me-2"></i>
                                       Add new contact
-                            </Link>Link>
-                    </div>div>
+                            </Link>
+                    </div>
               
                   {store.error && (
                           <div className="alert alert-danger alert-dismissible" role="alert">
@@ -79,18 +79,18 @@ export const Contacts = () => {
                                                     type="button"
                                                     className="btn-close"
                                                     onClick={() => dispatch({ type: ACTIONS.CLEAR_ERROR })}
-                                                  ></button>button>
-                          </div>div>
+                                                  ></button>
+                          </div>
                     )}
               
                   {store.contacts.length === 0 ? (
                           <div className="text-center text-white mt-5">
-                                    <i className="fas fa-users fa-5x mb-4 text-secondary"></i>i>
-                                    <h3>No hay contactos aun</h3>h3>
+                                    <i className="fas fa-users fa-5x mb-4 text-secondary"></i>
+                                    <h3>No hay contactos aun</h3>
                                     <p className="text-secondary">
-                                                Haz clic en "Add new contact" para agregar tu primer contacto.
-                                    </p>p>
-                          </div>div>
+                                                Haz clic en &quot;Add new contact&quot; para agregar tu primer contacto.
+                                    </p>
+                          </div>
                         ) : (
                           <div>
                               {store.contacts.map((contact) => (
@@ -99,9 +99,9 @@ export const Contacts = () => {
                                                                             contact={contact}
                                                                             onDelete={() => handleDeleteClick(contact)}
                                                                           />
-                                          </div>div>
+                                          </div>
                                         ))}
-                          </div>div>
+                          </div>
                     )}
               
                   {showDeleteModal && (
@@ -110,25 +110,25 @@ export const Contacts = () => {
                                                 <div className="modal-content bg-dark text-white">
                                                               <div className="modal-header">
                                                                               <h5 className="modal-title">
-                                                                                                <i className="fas fa-exclamation-triangle text-warning me-2"></i>i>
+                                                                                                <i className="fas fa-exclamation-triangle text-warning me-2"></i>
                                                                                                 Confirmar eliminacion
-                                                                              </h5>h5>
-                                                              </div>div>
+                                                                              </h5>
+                                                              </div>
                                                               <div className="modal-body">
-                                                                              Estas seguro de eliminar a <strong>{contactToDelete?.name}</strong>strong>?
-                                                              </div>div>
+                                                                              Estas seguro de eliminar a <strong>{contactToDelete?.name}</strong>?
+                                                              </div>
                                                               <div className="modal-footer">
                                                                               <button className="btn btn-secondary" onClick={() => setShowDeleteModal(false)}>
                                                                                                 Cancelar
-                                                                              </button>button>
+                                                                              </button>
                                                                               <button className="btn btn-danger" onClick={handleConfirmDelete}>
-                                                                                                <i className="fas fa-trash me-2"></i>i>Eliminar
-                                                                              </button>button>
-                                                              </div>div>
-                                                </div>div>
-                                    </div>div>
-                          </div>div>
+                                                                                                <i className="fas fa-trash me-2"></i>Eliminar
+                                                                              </button>
+                                                              </div>
+                                                </div>
+                                    </div>
+                          </div>
                     )}
-              </div>div>
+              </div>
             );
-};</div>
+};

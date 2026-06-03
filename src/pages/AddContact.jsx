@@ -32,7 +32,7 @@ export const AddContact = () => {
                             actions.getContacts();
                   }
           }
-    }, [id, store.contacts]);
+    }, [actions, id, isEditing, store.contacts]);
 
     const handleChange = (e) => {
           setFormData({
@@ -74,24 +74,24 @@ export const AddContact = () => {
                                   <div className="card bg-dark text-white border-secondary">
                                               <div className="card-header border-secondary">
                                                             <h3 className="mb-0">
-                                                                            <i className={`fas fa-${isEditing ? "edit" : "user-plus"} me-2`}></i>i>
+                                                                            <i className={`fas fa-${isEditing ? "edit" : "user-plus"} me-2`}></i>
                                                               {isEditing ? "Editar Contacto" : "Agregar Nuevo Contacto"}
-                                                            </h3>h3>
-                                              </div>div>
+                                                            </h3>
+                                              </div>
                                               <div className="card-body">
                                                 {error && (
                             <div className="alert alert-danger" role="alert">
-                                              <i className="fas fa-exclamation-circle me-2"></i>i>
+                                              <i className="fas fa-exclamation-circle me-2"></i>
                               {error}
-                            </div>div>
+                            </div>
                                                             )}
                                               
                                                             <form onSubmit={handleSubmit}>
                                                                             <div className="mb-3">
                                                                                               <label htmlFor="name" className="form-label">
-                                                                                                                  <i className="fas fa-user me-2 text-primary"></i>i>
+                                                                                                                  <i className="fas fa-user me-2 text-primary"></i>
                                                                                                                   Nombre completo *
-                                                                                                </label>label>
+                                                                                                </label>
                                                                                               <input
                                                                                                                     type="text"
                                                                                                                     className="form-control bg-secondary text-white border-0"
@@ -102,13 +102,13 @@ export const AddContact = () => {
                                                                                                                     placeholder="Ej: Juan Perez"
                                                                                                                     required
                                                                                                                   />
-                                                                            </div>div>
+                                                                            </div>
                                                             
                                                                             <div className="mb-3">
                                                                                               <label htmlFor="email" className="form-label">
-                                                                                                                  <i className="fas fa-envelope me-2 text-success"></i>i>
+                                                                                                                  <i className="fas fa-envelope me-2 text-success"></i>
                                                                                                                   Correo electronico
-                                                                                                </label>label>
+                                                                                                </label>
                                                                                               <input
                                                                                                                     type="email"
                                                                                                                     className="form-control bg-secondary text-white border-0"
@@ -118,13 +118,13 @@ export const AddContact = () => {
                                                                                                                     onChange={handleChange}
                                                                                                                     placeholder="Ej: juan@email.com"
                                                                                                                   />
-                                                                            </div>div>
+                                                                            </div>
                                                             
                                                                             <div className="mb-3">
                                                                                               <label htmlFor="phone" className="form-label">
-                                                                                                                  <i className="fas fa-phone me-2 text-info"></i>i>
+                                                                                                                  <i className="fas fa-phone me-2 text-info"></i>
                                                                                                                   Telefono
-                                                                                                </label>label>
+                                                                                                </label>
                                                                                               <input
                                                                                                                     type="tel"
                                                                                                                     className="form-control bg-secondary text-white border-0"
@@ -134,13 +134,13 @@ export const AddContact = () => {
                                                                                                                     onChange={handleChange}
                                                                                                                     placeholder="Ej: (555) 123-4567"
                                                                                                                   />
-                                                                            </div>div>
+                                                                            </div>
                                                             
                                                                             <div className="mb-4">
                                                                                               <label htmlFor="address" className="form-label">
-                                                                                                                  <i className="fas fa-map-marker-alt me-2 text-warning"></i>i>
+                                                                                                                  <i className="fas fa-map-marker-alt me-2 text-warning"></i>
                                                                                                                   Direccion
-                                                                                                </label>label>
+                                                                                                </label>
                                                                                               <input
                                                                                                                     type="text"
                                                                                                                     className="form-control bg-secondary text-white border-0"
@@ -150,7 +150,7 @@ export const AddContact = () => {
                                                                                                                     onChange={handleChange}
                                                                                                                     placeholder="Ej: Calle Principal 123, Ciudad"
                                                                                                                   />
-                                                                            </div>div>
+                                                                            </div>
                                                             
                                                                             <div className="d-flex gap-3">
                                                                                               <button
@@ -159,9 +159,9 @@ export const AddContact = () => {
                                                                                                                     onClick={() => navigate("/")}
                                                                                                                     disabled={loading}
                                                                                                                   >
-                                                                                                                  <i className="fas fa-arrow-left me-2"></i>i>
+                                                                                                                  <i className="fas fa-arrow-left me-2"></i>
                                                                                                                   Cancelar
-                                                                                                </button>button>
+                                                                                                </button>
                                                                                               <button
                                                                                                                     type="submit"
                                                                                                                     className="btn btn-primary flex-grow-1"
@@ -172,22 +172,22 @@ export const AddContact = () => {
                                                                                                                                                                   <span
                                                                                                                                                                                               className="spinner-border spinner-border-sm me-2"
                                                                                                                                                                                               role="status"
-                                                                                                                                                                                            ></span>span>
+                                                                                                                                                                                            ></span>
                                                                                                                                                                   Guardando...
-                                                                                                                                            </>>
+                                                                                                                                            </>
                                                                                                                                         ) : (
                                                                                                                                           <>
-                                                                                                                                                                  <i className={`fas fa-${isEditing ? "save" : "plus"} me-2`}></i>i>
+                                                                                                                                                                  <i className={`fas fa-${isEditing ? "save" : "plus"} me-2`}></i>
                                                                                                                                             {isEditing ? "Actualizar" : "Agregar"} Contacto
-                                                                                                                                            </>>
+                                                                                                                                            </>
                                                                                                                                         )}
-                                                                                                </button>button>
-                                                                            </div>div>
-                                                            </form>form>
-                                              </div>div>
-                                  </div>div>
-                        </div>div>
-                </div>div>
-          </div>div>
+                                                                                                </button>
+                                                                            </div>
+                                                            </form>
+                                              </div>
+                                  </div>
+                        </div>
+                </div>
+          </div>
         );
-};</></></div>
+};
