@@ -17,43 +17,43 @@ export const ContactCard = ({ contact, onDelete }) => {
                                     }}
                                   />
                         <div className="flex-grow-1">
-                                  <h5 className="card-title mb-1">{contact.name}</h5>h5>
+                                  <h5 className="card-title mb-1">{contact.name}</h5>
                           {contact.address && (
                         <p className="card-text mb-1 text-secondary">
-                                      <i className="fas fa-map-marker-alt me-2 text-warning"></i>i>
+                                      <i className="fas fa-map-marker-alt me-2 text-warning"></i>
                           {contact.address}
-                        </p>p>
+                        </p>
                                   )}
                           {contact.phone && (
                         <p className="card-text mb-1 text-secondary">
-                                      <i className="fas fa-phone me-2 text-info"></i>i>
+                                      <i className="fas fa-phone me-2 text-info"></i>
                           {contact.phone}
-                        </p>p>
+                        </p>
                                   )}
                           {contact.email && (
                         <p className="card-text mb-0 text-secondary">
-                                      <i className="fas fa-envelope me-2 text-success"></i>i>
+                                      <i className="fas fa-envelope me-2 text-success"></i>
                           {contact.email}
-                        </p>p>
+                        </p>
                                   )}
-                        </div>div>
+                        </div>
                         <div className="d-flex gap-2">
                                   <Link
                                                 to={`/edit/${contact.id}`}
                                                 className="btn btn-outline-light btn-sm"
                                                 title="Editar contacto"
                                               >
-                                              <i className="fas fa-pencil-alt"></i>i>
-                                  </Link>Link>
+                                              <i className="fas fa-pencil-alt"></i>
+                                  </Link>
                                   <button
                                                 className="btn btn-outline-danger btn-sm"
                                                 onClick={onDelete}
                                                 title="Eliminar contacto"
                                               >
-                                              <i className="fas fa-trash"></i>i>
-                                  </button>button>
-                        </div>div>
-                </div>div>
-          </div>div>
+                                              <i className="fas fa-trash"></i>
+                                  </button>
+                        </div>
+                </div>
+          </div>
         );
-};</div>
+};

@@ -1,35 +1,25 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
-import { BackendURL } from "./component/backendURL";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+} from "react-router-dom";
 
+import { Layout } from "./pages/Layout";
 import { Contacts } from "./pages/Contacts";
 import { AddContact } from "./pages/AddContact";
-import injectContext from "./store/appContext";
+import { Demo } from "./pages/Demo";
+import { Single } from "./pages/Single";
 
-import { Navbar } from "./component/navbar";
-
-//create your first component
-const Layout = () => {
-    	//the basename is used when your project is published in a subdirectory and not in the root of the domain
-    	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
-    	const basename = process.env.BASENAME || "";
-
-    	return (
-            		<div>
-                    			<BrowserRouter basename={basename}>
-                                				<ScrollToTop>
-                                                					<Navbar />
-                                                					<Routes>
-                                                                    						<Route element={<Contacts />} path="/" />
-                                                                    						<Route element={<AddContact />} path="/add" />
-                                                                    						<Route element={<AddContact />} path="/edit/:id" />
-                                                                    						<Route element={<h1>Not found!</h1>h1>} />
-                                                                                            </Route>Routes>
-                                                                    </Routes>ScrollToTop>
-                                                </ScrollToTop>BrowserRouter>
-                                </BrowserRouter>div>
-                    	);
-                        };
-                    
-                    export default injectContext(Layout);</div>
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Contacts />} />
+      <Route path="add" element={<AddContact />} />
+      <Route path="edit/:id" element={<AddContact />} />
+      <Route path="demo" element={<Demo />} />
+      <Route path="single/:theId" element={<Single />} />
+      <Route path="*" element={<h1>Not found!</h1>} />
+    </Route>,
+  ),
+  { basename: import.meta.env.BASE_URL },
+);

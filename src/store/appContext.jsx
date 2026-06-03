@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import getState from "../store.js";
 
 export const Context = React.createContext(null);
@@ -20,7 +20,7 @@ const injectContext = (PassedComponent) => {
           return (
                   <Context.Provider value={state}>
                             <PassedComponent {...props} />
-                  </Context.Provider>Context.Provider>
+                  </Context.Provider>
                 );
     };
     return StoreWrapper;
